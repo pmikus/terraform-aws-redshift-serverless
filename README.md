@@ -22,8 +22,6 @@ No modules.
 | ---- | ---- |
 | [aws_iam_role.redshift-serverless-role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_iam_role_policy.redshift-spectrum-data-read](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
-| [aws_lakeformation_permissions.database_describe](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lakeformation_permissions) | resource |
-| [aws_lakeformation_permissions.table_select](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lakeformation_permissions) | resource |
 | [aws_redshiftserverless_namespace.serverless](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshiftserverless_namespace) | resource |
 | [aws_redshiftserverless_workgroup.serverless](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/redshiftserverless_workgroup) | resource |
 | [aws_security_group.redshift-serverless-security-group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
@@ -41,13 +39,11 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 | ---- | ----------- | ---- | ------- | :------: |
-| <a name="input_additional_lake_formation_principal_arns"></a> [additional\_lake\_formation\_principal\_arns](#input\_additional\_lake\_formation\_principal\_arns) | Additional IAM role ARNs, such as the Bedrock Knowledge Base service role, to grant Lake Formation read access. | `list(string)` | `[]` | no |
 | <a name="input_app_environment"></a> [app\_environment](#input\_app\_environment) | Application environment | `string` | n/a | yes |
 | <a name="input_app_name"></a> [app\_name](#input\_app\_name) | Application name | `string` | n/a | yes |
 | <a name="input_glue_catalog_account_id"></a> [glue\_catalog\_account\_id](#input\_glue\_catalog\_account\_id) | Account ID owning the Glue catalog; defaults to the current account. | `string` | `null` | no |
 | <a name="input_glue_database_name"></a> [glue\_database\_name](#input\_glue\_database\_name) | Name of the existing Glue database containing queryable tables. | `string` | n/a | yes |
 | <a name="input_glue_table_names"></a> [glue\_table\_names](#input\_glue\_table\_names) | Allowlisted Glue table names Redshift may query. | `list(string)` | n/a | yes |
-| <a name="input_knowledge_base_service_role_arn"></a> [knowledge\_base\_service\_role\_arn](#input\_knowledge\_base\_service\_role\_arn) | Optional ARN of the existing Bedrock Knowledge Base service role. When set, the module grants it Lake Formation SELECT on the allowlisted tables; its IAM permissions must be managed elsewhere. | `string` | `null` | no |
 | <a name="input_lake_formation_column_allowlist"></a> [lake\_formation\_column\_allowlist](#input\_lake\_formation\_column\_allowlist) | Optional per-table SELECT column allowlists. Tables omitted from this map receive SELECT on all columns when Lake Formation grants are enabled. | `map(set(string))` | `{}` | no |
 | <a name="input_manage_lake_formation_permissions"></a> [manage\_lake\_formation\_permissions](#input\_manage\_lake\_formation\_permissions) | Whether this module should grant Lake Formation read permissions to the Redshift role and additional principals. | `bool` | `true` | no |
 | <a name="input_redshift_serverless_admin_password"></a> [redshift\_serverless\_admin\_password](#input\_redshift\_serverless\_admin\_password) | Admin Password | `string` | n/a | yes |
@@ -68,9 +64,7 @@ No modules.
 
 | Name | Description |
 | ---- | ----------- |
-| <a name="output_redshift_serverless_iam"></a> [redshift\_serverless\_iam](#output\_redshift\_serverless\_iam) | Redshift Serverless IAM |
-| <a name="output_redshift_serverless_namespace_arn"></a> [redshift\_serverless\_namespace\_arn](#output\_redshift\_serverless\_namespace\_arn) | Redshift Serverlss Namespace ID |
-| <a name="output_redshift_serverless_namespace_id"></a> [redshift\_serverless\_namespace\_id](#output\_redshift\_serverless\_namespace\_id) | Redshift Serverlss Namespace ID |
-| <a name="output_redshift_serverless_vpc_cidr"></a> [redshift\_serverless\_vpc\_cidr](#output\_redshift\_serverless\_vpc\_cidr) | The CIDR of the VPC |
-| <a name="output_redshift_serverless_vpc_id"></a> [redshift\_serverless\_vpc\_id](#output\_redshift\_serverless\_vpc\_id) | The ID of the VPC |
+| <a name="output_aws_redshiftserverless_workgroup"></a> [aws\_redshiftserverless\_workgroup](#output\_aws\_redshiftserverless\_workgroup) | Redshift Serverlss Workgroup ARN |
+| <a name="output_redshift_serverless_namespace_arn"></a> [redshift\_serverless\_namespace\_arn](#output\_redshift\_serverless\_namespace\_arn) | Redshift Serverlss Namespace ARN |
+| <a name="output_redshift_serverless_role_arn"></a> [redshift\_serverless\_role\_arn](#output\_redshift\_serverless\_role\_arn) | Redshift Serverless IAM |
 <!-- END_TF_DOCS -->

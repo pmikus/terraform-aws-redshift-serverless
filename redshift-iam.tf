@@ -102,8 +102,6 @@ data "aws_iam_policy_document" "redshift-spectrum-data-read" {
     )
   }
 
-  # Required whenever the S3 location is registered with Lake Formation,
-  # regardless of whether this module manages the LF grants.
   statement {
     sid       = "LakeFormationDataAccess"
     effect    = "Allow"

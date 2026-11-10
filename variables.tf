@@ -121,19 +121,6 @@ variable "manage_lake_formation_permissions" {
   default     = true
 }
 
-variable "additional_lake_formation_principal_arns" {
-  description = "Additional IAM role ARNs, such as the Bedrock Knowledge Base service role, to grant Lake Formation read access."
-  type        = list(string)
-  default     = []
-}
-
-variable "knowledge_base_service_role_arn" {
-  description = "Optional ARN of the existing Bedrock Knowledge Base service role. When set, the module grants it Lake Formation SELECT on the allowlisted tables; its IAM permissions must be managed elsewhere."
-  type        = string
-  default     = null
-  nullable    = true
-}
-
 variable "lake_formation_column_allowlist" {
   description = "Optional per-table SELECT column allowlists. Tables omitted from this map receive SELECT on all columns when Lake Formation grants are enabled."
   type        = map(set(string))
