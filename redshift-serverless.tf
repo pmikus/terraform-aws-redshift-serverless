@@ -35,3 +35,11 @@ resource "aws_redshiftserverless_workgroup" "serverless" {
     Environment = var.app_environment
   }
 }
+
+resource "aws_redshiftserverless_usage_limit" "usage_limit" {
+  resource_arn  = aws_redshiftserverless_workgroup.serverless.arn
+  usage_type    = "serverless-compute"
+  amount        = 2
+  breach_action = "deactivate"
+  period        = "daily"
+}
